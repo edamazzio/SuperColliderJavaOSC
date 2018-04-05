@@ -57,7 +57,7 @@ public class SynthUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
+        s1FreqSlider = new javax.swing.JSlider();
         jLabel3 = new javax.swing.JLabel();
         s1FreqTXT = new javax.swing.JTextField();
         s1OffBTN = new javax.swing.JButton();
@@ -65,7 +65,7 @@ public class SynthUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         s2OnBTN = new javax.swing.JButton();
         s2OffBTN = new javax.swing.JButton();
-        jSlider2 = new javax.swing.JSlider();
+        s2FreqSlider = new javax.swing.JSlider();
         jLabel5 = new javax.swing.JLabel();
         s2FreqTXT = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -83,14 +83,23 @@ public class SynthUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         s3AmpSlider = new javax.swing.JSlider();
         s3AmpTXT = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        s1TimeSlider = new javax.swing.JSlider();
+        s1TimeTXT = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        s2RateTXT = new javax.swing.JTextField();
+        s2RateSlider = new javax.swing.JSlider();
+        jLabel13 = new javax.swing.JLabel();
+        s2DepthSlider = new javax.swing.JSlider();
+        s2DepthTXT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setText("Bass Synth");
 
-        jSlider1.setMajorTickSpacing(1);
-        jSlider1.setMaximum(244);
-        jSlider1.setValue(244);
+        s1FreqSlider.setMajorTickSpacing(1);
+        s1FreqSlider.setMaximum(244);
+        s1FreqSlider.setValue(244);
 
         jLabel3.setText("Frequency (Hz)");
 
@@ -135,13 +144,13 @@ public class SynthUI extends javax.swing.JFrame {
             }
         });
 
-        jSlider2.setMajorTickSpacing(1);
-        jSlider2.setMaximum(20000);
-        jSlider2.setMinimum(20);
-        jSlider2.setValue(244);
-        jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
+        s2FreqSlider.setMajorTickSpacing(1);
+        s2FreqSlider.setMaximum(10000);
+        s2FreqSlider.setMinimum(20);
+        s2FreqSlider.setValue(500);
+        s2FreqSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSlider2StateChanged(evt);
+                s2FreqSliderStateChanged(evt);
             }
         });
 
@@ -223,6 +232,58 @@ public class SynthUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setText("Time between notes (0.01, 2.0)");
+
+        s1TimeSlider.setMajorTickSpacing(1);
+        s1TimeSlider.setMaximum(200);
+        s1TimeSlider.setMinimum(1);
+
+        s1TimeTXT.setText("0.5");
+        s1TimeTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s1TimeTXTActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Rate(Hz) Wobble ");
+
+        s2RateTXT.setText("6");
+        s2RateTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s2RateTXTActionPerformed(evt);
+            }
+        });
+
+        s2RateSlider.setMajorTickSpacing(1);
+        s2RateSlider.setMinimum(1);
+        s2RateSlider.setToolTipText("");
+        s2RateSlider.setValue(6);
+        s2RateSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                s2RateSliderStateChanged(evt);
+            }
+        });
+
+        jLabel13.setText("Depth (%)");
+
+        s2DepthSlider.setMajorTickSpacing(1);
+        s2DepthSlider.setMaximum(1000);
+        s2DepthSlider.setMinimum(1);
+        s2DepthSlider.setToolTipText("");
+        s2DepthSlider.setValue(2);
+        s2DepthSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                s2DepthSliderStateChanged(evt);
+            }
+        });
+
+        s2DepthTXT.setText("6");
+        s2DepthTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                s2DepthTXTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,66 +293,93 @@ public class SynthUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(s1FreqTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(s1FreqSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(s1FreqTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(s1OnBTN)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(s1OffBTN)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(s2FreqSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(s2FreqTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(s2OnBTN)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(s2OffBTN)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(s3FreqTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(s3OnBTN)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(s3OffBTN))
+                                    .addComponent(jLabel7))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(s1OnBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(s1OffBTN)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(s2FreqTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(s2OnBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(s2OffBTN)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(s3FreqTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(s3OnBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(s3OffBTN))
-                            .addComponent(jLabel7))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(s1AmpSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(s1AmpTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(s2AmpSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(s2AmpTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(s3AmpSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(s3AmpTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel13)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(s2DepthSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(s2DepthTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(s1AmpSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(s1AmpTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(s2AmpSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(s2AmpTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(s3AmpSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(s3AmpTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(s1TimeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(s1TimeTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(s2RateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(s2RateTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +407,7 @@ public class SynthUI extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(s2FreqSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(s1FreqTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -330,7 +418,7 @@ public class SynthUI extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(s1FreqSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(s1AmpTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,28 +436,48 @@ public class SynthUI extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(s3AmpSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(153, 153, 153))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(s1TimeTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(s1TimeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(s2RateTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(s2RateSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(s2DepthTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(s2DepthSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55))
         );
 
-        jSlider1.addChangeListener(new ChangeListener() {
+        s1FreqSlider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 JSlider mySlider = (JSlider) e.getSource();
                 if (mySlider.getValueIsAdjusting()) {
                     float freq = (float) mySlider.getValue();
                     s1FreqTXT.setText(String.valueOf(freq));
-                    sendFreqToSynth(freq, node1);
+                    sendNSetToSynth("freq", freq, node1);
                     //doPrintValue(freq);
                     //doSendSlider(freq, 1000);
                 }
             }
 
         });
-        jSlider2.addChangeListener(new ChangeListener() {
+        s2FreqSlider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 JSlider mySlider = (JSlider) e.getSource();
                 if (mySlider.getValueIsAdjusting()) {
                     float freq = (float) mySlider.getValue();
                     s2FreqTXT.setText(String.valueOf(freq));
+                    sendNSetToSynth("freq", freq, node2);
                     //doPrintValue(freq);
                     //doSendSlider(freq, 1000);
                 }
@@ -392,10 +500,9 @@ public class SynthUI extends javax.swing.JFrame {
             public void stateChanged(ChangeEvent e) {
                 JSlider mySlider = (JSlider) e.getSource();
                 if (mySlider.getValueIsAdjusting()) {
-                    float freq = (float) mySlider.getValue();
-                    s1AmpTXT.setText(String.valueOf(freq/100.0));
-                    //doPrintValue(freq);
-                    //doSendSlider(freq, 1000);
+                    float amp = (float) mySlider.getValue() /100;
+                    s1AmpTXT.setText(String.valueOf(amp));
+                    sendNSetToSynth("amp", amp, node1);
                 }
             }
 
@@ -404,8 +511,9 @@ public class SynthUI extends javax.swing.JFrame {
             public void stateChanged(ChangeEvent e) {
                 JSlider mySlider = (JSlider) e.getSource();
                 if (mySlider.getValueIsAdjusting()) {
-                    float freq = (float) mySlider.getValue();
-                    s2AmpTXT.setText(String.valueOf(freq/100.0));
+                    float amp = (float) mySlider.getValue()/100;
+                    s2AmpTXT.setText(String.valueOf(amp));
+                    sendNSetToSynth("amp", amp, node2);
                     //doPrintValue(freq);
                     //doSendSlider(freq, 1000);
                 }
@@ -420,6 +528,41 @@ public class SynthUI extends javax.swing.JFrame {
                     s3AmpTXT.setText(String.valueOf(freq/100.0));
                     //doPrintValue(freq);
                     //doSendSlider(freq, 1000);
+                }
+            }
+
+        });
+        s1TimeSlider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                JSlider mySlider = (JSlider) e.getSource();
+                if (mySlider.getValueIsAdjusting()) {
+                    float time = (float) mySlider.getValue() /100;
+                    s1TimeTXT.setText(String.valueOf(time));
+                    sendNSetToSynth("time", time, node1);
+                }
+            }
+
+        });
+        s2RateSlider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                JSlider mySlider = (JSlider) e.getSource();
+                if (mySlider.getValueIsAdjusting()) {
+                    float rate = (float) mySlider.getValue();
+                    s2RateTXT.setText(String.valueOf(rate));
+                    sendNSetToSynth("rate", rate, node2);
+                    //doPrintValue(freq);
+                    //doSendSlider(freq, 1000);
+                }
+            }
+
+        });
+        s2DepthSlider.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                JSlider mySlider = (JSlider) e.getSource();
+                if (mySlider.getValueIsAdjusting()) {
+                    float depth = (float) mySlider.getValue()/10;
+                    s2DepthTXT.setText(String.valueOf(depth));
+                    sendNSetToSynth("depth", depth, node2);
                 }
             }
 
@@ -464,9 +607,9 @@ public class SynthUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_s2FreqTXTActionPerformed
 
-    private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
+    private void s2FreqSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_s2FreqSliderStateChanged
         // Empty
-    }//GEN-LAST:event_jSlider2StateChanged
+    }//GEN-LAST:event_s2FreqSliderStateChanged
 
     private void s3OnBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3OnBTNActionPerformed
         this.s3On = false;
@@ -501,6 +644,26 @@ public class SynthUI extends javax.swing.JFrame {
     private void s3AmpTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3AmpTXTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_s3AmpTXTActionPerformed
+
+    private void s1TimeTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s1TimeTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_s1TimeTXTActionPerformed
+
+    private void s2RateTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s2RateTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_s2RateTXTActionPerformed
+
+    private void s2RateSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_s2RateSliderStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_s2RateSliderStateChanged
+
+    private void s2DepthSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_s2DepthSliderStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_s2DepthSliderStateChanged
+
+    private void s2DepthTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s2DepthTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_s2DepthTXTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -540,19 +703,20 @@ public class SynthUI extends javax.swing.JFrame {
             }
         });
     }
-    
-    private void sendFreqToSynth(Float freq, int node){
-        List<Object> args = new ArrayList<Object>(3);
-            args.add(node);
-            args.add("freq");
-            args.add(freq);
-            OSCMessage msg = new OSCMessage("/n_set", args);
-            try {
-                oscPort.send(msg);
-            } catch (Exception e) {
-                showError("Couldn't send");
-            }
+       
+    private void sendNSetToSynth(String parameter, Float value, int node){
+        List<Object> args = new ArrayList<>(3);
+        args.add(node);
+        args.add(parameter);
+        args.add(value);
+        OSCMessage msg = new OSCMessage("/n_set", args);
+        try {
+            oscPort.send(msg);
+        } catch (IOException e) {
+            showError("Couldn't send");
+        }
     }
+       
     
     protected void showError(String anErrorMessage) {
         // tell the JOptionPane to showMessageDialog
@@ -592,6 +756,9 @@ public class SynthUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -600,19 +767,25 @@ public class SynthUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
     private javax.swing.JSlider jSlider3;
     private javax.swing.JSlider s1AmpSlider;
     private javax.swing.JTextField s1AmpTXT;
+    private javax.swing.JSlider s1FreqSlider;
     private javax.swing.JTextField s1FreqTXT;
     private javax.swing.JButton s1OffBTN;
     private javax.swing.JButton s1OnBTN;
+    private javax.swing.JSlider s1TimeSlider;
+    private javax.swing.JTextField s1TimeTXT;
     private javax.swing.JSlider s2AmpSlider;
     private javax.swing.JTextField s2AmpTXT;
+    private javax.swing.JSlider s2DepthSlider;
+    private javax.swing.JTextField s2DepthTXT;
+    private javax.swing.JSlider s2FreqSlider;
     private javax.swing.JTextField s2FreqTXT;
     private javax.swing.JButton s2OffBTN;
     private javax.swing.JButton s2OnBTN;
+    private javax.swing.JSlider s2RateSlider;
+    private javax.swing.JTextField s2RateTXT;
     private javax.swing.JSlider s3AmpSlider;
     private javax.swing.JTextField s3AmpTXT;
     private javax.swing.JTextField s3FreqTXT;
