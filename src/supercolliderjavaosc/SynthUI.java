@@ -145,7 +145,7 @@ public class SynthUI extends javax.swing.JFrame {
         });
 
         s2FreqSlider.setMajorTickSpacing(1);
-        s2FreqSlider.setMaximum(10000);
+        s2FreqSlider.setMaximum(5000);
         s2FreqSlider.setMinimum(20);
         s2FreqSlider.setValue(500);
         s2FreqSlider.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -490,6 +490,7 @@ public class SynthUI extends javax.swing.JFrame {
                 if (mySlider.getValueIsAdjusting()) {
                     float freq = (float) mySlider.getValue();
                     s3FreqTXT.setText(String.valueOf(freq));
+                    sendNSetToSynth("midi", freq, node3);
                     //doPrintValue(freq);
                     //doSendSlider(freq, 1000);
                 }
@@ -593,14 +594,14 @@ public class SynthUI extends javax.swing.JFrame {
         this.s2On = false;
         this.s2OffBTN.setEnabled(true);
         this.s2OnBTN.setEnabled(false);
-        doSendOn(Float.parseFloat((s1FreqTXT.getText())), node2, s2Name);
+        doSendOn(Float.parseFloat((s2FreqTXT.getText())), node2, s2Name);
     }//GEN-LAST:event_s2OnBTNActionPerformed
 
     private void s2OffBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s2OffBTNActionPerformed
         this.s2On = false;
         this.s2OffBTN.setEnabled(false);
         this.s2OnBTN.setEnabled(true);
-         doSendOff(node2);
+        doSendOff(node2);
     }//GEN-LAST:event_s2OffBTNActionPerformed
 
     private void s2FreqTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s2FreqTXTActionPerformed
@@ -615,14 +616,14 @@ public class SynthUI extends javax.swing.JFrame {
         this.s3On = false;
         this.s3OffBTN.setEnabled(true);
         this.s3OnBTN.setEnabled(false);
-        // TODO Enable s3
+        doSendOn(Float.parseFloat((s3FreqTXT.getText())), node3, s3Name);
     }//GEN-LAST:event_s3OnBTNActionPerformed
 
     private void s3OffBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_s3OffBTNActionPerformed
         this.s3On = false;
         this.s3OffBTN.setEnabled(false);
         this.s3OnBTN.setEnabled(true);
-        // TODO Disable s3
+        doSendOff(node3);
     }//GEN-LAST:event_s3OffBTNActionPerformed
 
     private void jSlider3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider3StateChanged
