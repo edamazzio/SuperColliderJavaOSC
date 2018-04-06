@@ -41,9 +41,10 @@ SynthDef.new(\bass, {
 
 }).add;
 
-x = Synth(\bass, ["freq",440, "amp",1, "gate",1, "time",0.5]);
+//x = Synth(\bass, ["freq",440, "amp",1, "gate",1, "time",0.5]);
 //x.set(\time, 1);
 
+//x.set(\freq, 220);
 )
 
 
@@ -74,12 +75,12 @@ SynthDef.new(\chords, {
 	var env1, env2, env3, sig, chord1, chord2, chord3, diff, midi2, midi3;
 
 	diff = 60;
-	//Env.new([0.0001,0.8,0.0001,0.0001],[0.5, 0.5,0.5*4], \exp).plot;
-	//Env.new([0.0001,0.0001,0.8,0.0001,0.0001],[0.5*2, 0.5, 0.5, 0.5*2], \exp).plot;
-	//Env.new([0.0001,0.0001,0.8,0.0001],[0.5*4, 0.5, 0.5], \exp).plot;
-	env1 = EnvGen.kr(Env([0.0001,0.8,0.0001,0.0001],[time, time, time*4], \exp).circle);
-	env2 = EnvGen.kr(Env([0.0001,0.0001,0.8,0.0001,0.0001],[time*2, time, time, time*2], \exp).circle);
-	env3 = EnvGen.kr(Env([0.0001,0.0001,0.8,0.0001],[time*4, time, time], \exp).circle);
+	Env.new([0.0001,0.8,0.0001,0.0001],[0.01, 0.5, 0.5*5], \exp).plot;
+	Env.new([0.0001,0.0001,0.8,0.0001,0.0001],[0.5*2, 0.01, 0.5, 0.5*3], \exp).plot;
+	Env.new([0.0001,0.0001,0.8,0.0001, 0,0001],[0.5*4, 0.01, 0.5, 0.5], \exp).plot;
+	env1 = EnvGen.kr(Env([0.0001,0.8,0.0001,0.0001],[0.01, time, time*5], \exp).circle);
+	env2 = EnvGen.kr(Env([0.0001,0.0001,0.8,0.0001,0.0001],[time*2, 0.01, time, time*3], \exp).circle);
+	env3 = EnvGen.kr(Env([0.0001,0.0001,0.8,0.0001,0.0001],[time*4, 0.01, time, time], \exp).circle);
 
 
 
@@ -104,8 +105,5 @@ SynthDef.new(\chords, {
 
 
 }).add;
-
-x = Synth(\chords, ["freq",440, "amp",1, "time",0.5]);
-//x.set(\time, 1);
 
 )
